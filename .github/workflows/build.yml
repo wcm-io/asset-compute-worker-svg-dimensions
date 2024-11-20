@@ -47,3 +47,14 @@ jobs:
         with:
           os: ${{ matrix.os }}
           command: test
+      # Also run the docker-based integration tests (normally run by aio app test)
+      - name: Install Docker
+        run: |
+          curl -fsSL https://get.docker.com -o get-docker.sh
+          sudo sh get-docker.sh
+          sudo usermod -aG docker $USER
+          docker --version
+      - name: Fix permissions
+        run: sudo chown -R $USER:$USER /home/runner/work/asset-compute-worker-svg-dimensions/asset-compute-worker-svg-dimensions
+      - name: npm run test
+        run: npm run test
