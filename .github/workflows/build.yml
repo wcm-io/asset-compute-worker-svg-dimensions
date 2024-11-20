@@ -48,5 +48,7 @@ jobs:
           sudo sh get-docker.sh
           sudo usermod -aG docker $USER
           docker --version
+      - name: Fix permissions
+        run: sudo chown -R $USER:$USER /home/runner/work/asset-compute-worker-svg-dimensions/asset-compute-worker-svg-dimensions
       - name: npm run test
         run: npm run test
