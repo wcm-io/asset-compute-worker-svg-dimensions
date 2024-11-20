@@ -19,8 +19,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: ['20']
-        os: [macOS-latest, ubuntu-latest, windows-latest]
+        node-version: ['22']
+        os: [ubuntu-latest]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,14 +37,14 @@ jobs:
         with:
           os: ${{ matrix.os }}
           version: 10.x.x
-      - name: Build
+      - name: aio app build
         env:
           AIO_RUNTIME_NAMESPACE: ${{ secrets.AIO_RUNTIME_NAMESPACE_STAGE }}
         uses: adobe/aio-apps-action@3.3.0
         with:
           os: ${{ matrix.os }}
           command: build
-      - name: Test
+      - name: aio app test
         uses: adobe/aio-apps-action@3.3.0
         with:
           os: ${{ matrix.os }}
