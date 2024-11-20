@@ -42,6 +42,8 @@ jobs:
         with:
           os: ${{ matrix.os }}
           command: build
-      - name: npm run test
-        run: npm run test
-  
+      - name: aio app test
+        uses: adobe/aio-apps-action@3.3.0
+        with:
+          os: ${{ matrix.os }}
+          command: test
