@@ -1,0 +1,35 @@
+{
+  "name": "wcmioAssCmpSvgDim",
+  "description": "AEM Asset Compute Worker to extract width/height dimensions from SVG binary.",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "author": "wcm.io",
+  "private": true,
+  "dependencies": {
+    "@adobe/asset-compute-sdk": "^4.6.1",
+    "@adobe/asset-compute-xmp": "^1.0.0",
+    "@adobe/generator-app-asset-compute": "^2.0.1",
+    "image-size": "^1.1.1"
+  },
+  "devDependencies": {
+    "@adobe/aio-cli-plugin-asset-compute": "^4.0.4",
+    "@eslint/js": "^9.15.0",
+    "@openwhisk/wskdebug": "^1.4.0",
+    "eslint": "^9.15.0",
+    "eslint-plugin-jest": "^28.9.0",
+    "globals": "^15.12.0",
+    "jest": "^29"
+  },
+  "scripts": {
+    "test": "aio app test",
+    "test:unit": "jest --passWithNoTests ./test",
+    "lint": "eslint --ignore-pattern web-src --no-error-on-unmatched-pattern test src actions",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "aio-app-builder-templates": [
+    "@adobe/generator-app-asset-compute"
+  ]
+}

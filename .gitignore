@@ -1,36 +1,42 @@
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-maven-eclipse.xml
-infinitest.filters
 
-node_modules/
-node/
-npm-debug.log
+# package directories
+node_modules
+jspm_packages
 
-.nodejs
-.project
-.classpath
-.settings
-.externalToolBuilders
-.pmd
-.eclipse-pmd
-.checkstyle
-.idea
-.vagrant
-*.iml
-.DS_Store
-*.retry
-.rubygems
-.sass-cache
-.rubygems-gem-maven-plugin
-*.sublime-*
-*nbactions*.xml
-.temp/
-.vlt
-.vlt-sync*
-.brackets.json
+# build
+build
+dist
+.manifest-dist.yml
+
+# Config
+config.json
+.env*
 .aio
+
+# Adobe I/O console config
+console.json
+
+# Test output
+junit.xml
+
+# IDE & Temp
+.cache
+.idea
+.nyc_output
+.vscode
+coverage
+.aws.tmp.creds.json
+.wskdebug.props.tmp
+
+# Parcel
+.parcel-cache
+
+# OSX
+.DS_Store
+
+# yeoman
+.yo-repository
+
+# logs folder for aio-run-detached
+logs
+
