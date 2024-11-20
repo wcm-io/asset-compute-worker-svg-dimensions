@@ -42,5 +42,12 @@ jobs:
         with:
           os: ${{ matrix.os }}
           command: build
+      - name: Install Docker
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker.io
+          sudo systemctl start docker
+          sudo systemctl enable docker
+          docker --version
       - name: npm run test
         run: npm run test
