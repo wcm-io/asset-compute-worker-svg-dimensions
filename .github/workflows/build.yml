@@ -47,7 +47,7 @@ jobs:
         with:
           os: ${{ matrix.os }}
           command: test
-      # Also runn the docker-based integration tests (normally run by aio app test)
+      # Also run the docker-based integration tests (normally run by aio app test)
       - name: Install Docker
         run: |
           curl -fsSL https://get.docker.com -o get-docker.sh
