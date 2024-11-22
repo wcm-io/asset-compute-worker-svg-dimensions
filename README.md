@@ -2,60 +2,61 @@
 
 AEM Asset Compute Worker to extract width/height dimensions from SVG binary.
 
-## Setup
+## Deploy for usage with AEM as a Cloud Service
 
-- Populate the `.env` file in the project root and fill it as shown [below](#env)
+### Deploy to AppBuilder Console
 
-## Test
+System requirements:
+* [aio-cli](https://github.com/adobe/aio-cli)
+* [aio-asset-compute-plugin](https://github.com/adobe/aio-cli-plugin-asset-compute)
 
-- Run `aio app test` to run asset compute worker tests
-- Run `aio app test:unit` to run unit tests
+Deployment steps:
 
-## Deploy & Cleanup
+1. Login to https://developer.adobe.com
+2. Create a new project with "Project from template" using the "App Builder" template
+    * Project name: _wcmio AEM Asset Compute SVG Dimensions_
+    * App name: _wcmioAssCmpSvgDim_
+    * (You may also use different names for your environment, but make sure they are not too long and do not include invalid characters)
+3. For both _Production_ and _Stage_ workspaces, add an "API" service for "Asset Compute"
+    * Use a custom credential name for Production: _wcmioAssCmpSvgDim_production_
+    * Use a custom credential name for Stage: _wcmioAssCmpSvgDim_stage_
+    * (The credential name auto-created by the wizard may be too long, so use custom names)
+4. Download the JSON configuration files for both _Production_ and _Stage_ workspaces
+5. Clone https://github.com/wcm-io/asset-compute-worker-svg-dimensions
+6. Deploy the worker to both workspaces (execute the following steps once for each work space)
+    ```
+    aio login
+    aio app use <path to downloaded json for workspace>
+    aio app deploy
+    ```
+7. For both workspaces, get the generated worker URL via
+    ```
+    aio app get-url
+    ```
+
+### Define Processing Profile in AEM
+
+1. With AEM Author, go to Tools > Assets > Processing Profiles
+2. Create a new processing profile named _wcm.io AEM Asset Compute SVG Dimensions_
+3. Add a new "Custom" processing service
+4. Enable "Create Metadata Rendition" flag
+5. Enter the worker URL (use _Stage_ for DEV and STAGE environments, and _Production_ for PROD environment)
+6. Set Mime Types - Includes to
+    ```
+    image/svg\+xml
+    ```
+    (the backslash is requirement for escaping)
+
+
+
+## Development
+
+
+### Test
+
+- Run `aio app test` to run asset compute worker tests (requires Docker)
+
+### Deploy & Cleanup
 
 - `aio app deploy` to build and deploy all actions on Runtime and static files to CDN
 - `aio app undeploy` to undeploy the app
-
-## Config
-
-### `.env`
-
-You can generate this file using the command `aio app use`. 
-
-```bash
-# This file must **not** be committed to source control
-
-## please provide your Adobe I/O Runtime credentials
-# AIO_RUNTIME_AUTH=
-# AIO_RUNTIME_NAMESPACE=
-```
-
-### `app.config.yaml`
-
-- Main configuration file that defines an application's implementation. 
-- More information on this file, application configuration, and extension configuration 
-  can be found [here](https://developer.adobe.com/app-builder/docs/guides/appbuilder-configuration/#appconfigyaml)
-
-#### Action Dependencies
-
-- You have two options to resolve your actions' dependencies:
-
-  1. **Packaged action file**: Add your action's dependencies to the root
-   `package.json` and install them using `npm install`. Then set the `function`
-   field in `app.config.yaml` to point to the **entry file** of your action
-   folder. We will use `webpack` to package your code and dependencies into a
-   single minified js file. The action will then be deployed as a single file.
-   Use this method if you want to reduce the size of your actions.
-
-  2. **Zipped action folder**: In the folder containing the action code add a
-     `package.json` with the action's dependencies. Then set the `function`
-     field in `app.config.yaml` to point to the **folder** of that action. We will
-     install the required dependencies within that directory and zip the folder
-     before deploying it as a zipped action. Use this method if you want to keep
-     your action's dependencies separated.
-
-## Debugging in VS Code
-
-While running your local server (`aio app run`), both UI and actions can be debugged, to do so open the vscode debugger
-and select the debugging configuration called `WebAndActions`.
-Alternatively, there are also debug configs for only UI and each separate action.

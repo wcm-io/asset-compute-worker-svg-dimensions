@@ -6,10 +6,6 @@ const fs = require('fs').promises;
 const sizeOf = require("image-size");
 
 exports.main = worker(async (source, rendition) => {
-  if (rendition.instructions.fmt != 'xml') {
-    throw new RenditionFormatUnsupportedError('This worker only supports fmt="xml" XMP metadata.');
-  }
-
   // detect SVG dimension
   const xmpData = {};
   try {
