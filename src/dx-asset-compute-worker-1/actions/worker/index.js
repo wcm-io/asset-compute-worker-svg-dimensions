@@ -1,6 +1,6 @@
 'use strict';
 
-const { worker, RenditionFormatUnsupportedError } = require('@adobe/asset-compute-sdk');
+const { worker } = require('@adobe/asset-compute-sdk');
 const { serializeXmp } = require('@adobe/asset-compute-xmp');
 const fs = require('fs').promises;
 const sizeOf = require("image-size");
