@@ -1,7 +1,7 @@
 {
   "name": "wcmioAssCmpSvgDim",
   "description": "AEM Asset Compute Worker to extract width/height dimensions from SVG binary.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "Apache-2.0",
   "author": "wcm.io",
   "private": true,
