@@ -17,7 +17,7 @@
     "@openwhisk/wskdebug": "^1.4.0",
     "eslint": "^9.22.0",
     "eslint-plugin-jest": "^29.0.0",
-    "globals": "^16.0.0",
+    "globals": "^17.0.0",
     "jest": "^30.0.0"
   },
   "scripts": {
