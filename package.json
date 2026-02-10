@@ -13,9 +13,9 @@
   },
   "devDependencies": {
     "@adobe/aio-cli-plugin-asset-compute": "^4.0.4",
-    "@eslint/js": "^9.22.0",
+    "@eslint/js": "^10.0.0",
     "@openwhisk/wskdebug": "^1.4.0",
-    "eslint": "^9.22.0",
+    "eslint": "^10.0.0",
     "eslint-plugin-jest": "^29.0.0",
     "globals": "^17.0.0",
     "jest": "^30.0.0"
