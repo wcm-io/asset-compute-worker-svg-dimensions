@@ -3,13 +3,15 @@
 const { worker } = require('@adobe/asset-compute-sdk');
 const { serializeXmp } = require('@adobe/asset-compute-xmp');
 const fs = require('fs').promises;
-const sizeOf = require("image-size");
+const { readFileSync } = require('node:fs');
+const { imageSize } = require('image-size')
 
 exports.main = worker(async (source, rendition) => {
   // detect SVG dimension
   const xmpData = {};
   try {
-    const dimensions = sizeOf(source.path);
+    const buffer = readFileSync(source.path);
+    const dimensions = imageSize(buffer);
     if (dimensions?.width && dimensions?.height) {
       xmpData["tiff:ImageWidth"] = dimensions.width;
       xmpData["tiff:ImageLength"] = dimensions.height;
