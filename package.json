@@ -9,7 +9,7 @@
     "@adobe/asset-compute-sdk": "^4.6.2",
     "@adobe/asset-compute-xmp": "^1.0.0",
     "@adobe/generator-app-asset-compute": "^3.0.0",
-    "image-size": "^1.2.0"
+    "image-size": "^2.0.0"
   },
   "devDependencies": {
     "@adobe/aio-cli-plugin-asset-compute": "^5.0.0",
